@@ -14,32 +14,13 @@ struct CardView: View {
             Color.black
             
             //image
-            Image("avatar")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 100)
+            imageLayer
             
             //Gradient
             LinearGradient(colors: [.clear, .black], startPoint: .center  ,endPoint: .bottom)
             
             //Information
-            VStack(alignment: .leading){
-                HStack(alignment: .bottom){
-                 
-                    Text("ブルー")
-                        .font(.largeTitle.bold())
-                    
-                    Text("99")
-                        .font(.title2)
-                    
-                    Circle()
-                        .frame(width: 22, height: 22)
-                }
-                Text("よろしくお願いします")
-            }
-            .foregroundStyle(.white)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+            informationLayer
         }
         .clipShape(RoundedRectangle(cornerRadius: 15))
     }
@@ -47,4 +28,35 @@ struct CardView: View {
 
 #Preview {
     CardView()
+}
+
+extension CardView{
+    
+    private var imageLayer: some View{
+        Image("user01")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 100)
+    }
+    
+    private var informationLayer: some View{
+        VStack(alignment: .leading){
+            HStack(alignment: .bottom){
+             
+                Text("ブルー")
+                    .font(.largeTitle.bold())
+                
+                Text("99")
+                    .font(.title2)
+                
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundStyle(.white, .blue)
+                    .font(.title2)
+            }
+            Text("よろしくお願いします")
+        }
+        .foregroundStyle(.white)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+    }
 }
